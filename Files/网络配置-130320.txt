@@ -1,0 +1,84 @@
+临时更改主机IP地址：
+	1.动态获取：sudo dhclient
+	2.静态指定：sudo ifconfig eht0 192.168.1.10
+
+
+
+永久配置主机： 
+	1.vi /etc/network/interfaces
+		a.动态获取：iface eth0 inet dhcp
+		b.静态指定：
+			auto eth0
+			iface eth0 inet static
+				address 192.168.1.100
+				netmask 255.255.255.0
+				gateway 192.168.1.1
+	2.重启网络服务；
+		sudo /etc/init.d/networking restart | reload
+		sudo service networking restart
+
+
+
+DNS地址配置文件：
+	vi /etc/resolv.conf
+		nameserver 8.8.8.8
+
+
+查看网络适配器：
+	ifconfig
+关闭网卡：
+	sudo ifconfig eth0 down
+开启：
+	sudo ifconfig eth0 up
+查看路由表：
+	route 
+添加一条路由规则：
+	sudo route add 网段地址 gw 网关地址
+	sudo route add defalut gw 192.168.1.1
+检测网络连接：
+	ping 目标主机|域名
+
+本地域名|主机名解析：
+	/etc/hosts
+主机名字：
+	/etc/hostname
+
+
+
+
+安装tftp服务：
+	1.下载：
+		sudo apt-get install tftpd-hpa tftp-hpa
+	2.配置：
+		sudo vi /etc/default/tftpd-hpa
+		TFTP_USERNAME="tftp"		# 保证服务目录存在并且权限是777
+		TFTP_DIRECTORY="/tftpboot"
+		TFTP_ADDRESS="0.0.0.0:69"
+		TFTP_OPTIONS="--secure -c -l"
+	3.重启：
+		sudo /etc/init.d/tftpd-hpa restart
+
+客户端基本操作：
+	1.登录：
+		tftp 服务器ip地址
+	2.下载：
+		get filename
+	3.上传：
+		put filename
+	4.退出：
+		quit | q
+
+
+
+配置NFS服务器：
+	1.安装服务软件：
+		sudo apt-get install nfs-kelnel-server
+	2.配置服务器：
+		vi /etc/exports		#详情见： man exports
+	3.重启服务：
+		sudo /etc/init.d/nfs-kernel-server restart
+
+客户端挂载：
+	sudo mount -t nfs 127.0.0.1:/nfsroot nfsdir
+
+
