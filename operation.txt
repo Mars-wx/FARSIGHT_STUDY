@@ -5,7 +5,8 @@ Upload Files:
 	git push wx master
 
 Download Files:
-	git clone git://github.com:wx/FARSIGHT_STUDY.git	
+	git clone git://github.com:wx/FARSIGHT_STUDY.git
+	git pull wx master
 
 Update Files:
 	git commit -a
