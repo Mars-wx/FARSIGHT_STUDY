@@ -1,4 +1,0 @@
-FARSIGHT_STUDY
-==============
-
-FILES IN STUDY OF FARSIGHT
