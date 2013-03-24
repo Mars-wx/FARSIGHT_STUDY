@@ -1,0 +1,26 @@
+Upload Files:
+	git add filename
+	git commit -m "messgae for explaination"
+	#git remote add wx SSH or HTTPS
+	git push wx master
+
+Download Files:
+	git clone git://github.com:wx/FARSIGHT_STUDY.git	
+
+Update Files:
+	git commit -a
+	git push wx master
+
+Delete Files:
+	git rm filename
+	git commit -m "remove filename(explaination)"
+	git push wx master
+
+Creat SSH:
+	cd ~/.ssh		#check if exist
+	ssh-keygen -t rsa -C "emialadd"		#create a new ssh key then enter 
+										#'enter',then enter passphrase
+	clip < ~/.ssh/id_rsa.pub			#copy to clipboard
+										#then add to github
+	ssh -T git@github.com				#test if succ
+
