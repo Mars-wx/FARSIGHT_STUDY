@@ -1,0 +1,50 @@
+最早的Deb包管理工具：
+	查看deb软件包的内容：
+		dpkg -c 静态deb文件名字
+	查看软件包的安装列表：
+		dpkg -L 软件包名字
+	安装软件包：
+		sudo dpkg -i 静态的deb文件名字
+	查看安装状态：
+		dpkg -s deb软件包名字
+	卸载：
+		sudo dpkg -r deb软件包名字
+	清除：
+		sudo dpkg -P deb软件包名字
+
+
+APT高级软件包管理工具：
+
+	安装：
+		sudo apt-get install 软件包名字
+	只下载不安装：
+		sudo apt-get install -d 软件包名字
+	卸载：
+		sudo apt-get remove 软件包名字
+	清除：
+		sudo apt-get remove --purge 软件包名字
+	查看软件基本信息：
+		apt-cache show 软件包名字
+	更新本地的索引文件：
+		sudo apt-get update
+	搜索软件包：
+		apt-cache search 软件包名字 | 相关的关键字
+	下载源码包：
+		apt-get source 源码包名字
+
+
+服务器地址：
+	/etc/apt/sources.list
+本地索引文件：
+	/var/lib/apt/lists/*
+下载后的软件包位置：
+	/var/cache/apt/archives/*
+
+s
+制作一个deb包：
+	1.新建一个任意名字文件夹比如mydeb
+	2.在mydeb内新建一个固定名字文件夹DEBIAN
+	3.在DEBIAN里新建一个固定名字文本文件control, 在contr内填充软件的基本信息（详情参考: dpkg -s gcc）。
+	4.在mydeb内新建N条软件的安装路径。
+	5.跳出mydeb,运行命令：
+		dpkg -b mydeb deb包文件名字
